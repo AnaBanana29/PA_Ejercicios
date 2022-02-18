@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\PA_EJERCICIOS\PA_EJERCICIOS\Source.cpp(60,13): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\PA_EJERCICIOS\PA_EJERCICIOS\Source.cpp(468,11): warning C4244: 'inicializando': conversión de 'std::streamoff' a 'int'; posible pérdida de datos
+  PA_EJERCICIOS.vcxproj -> C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\PA_EJERCICIOS\Debug\PA_EJERCICIOS.exe
