@@ -1,0 +1,184 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Español (México) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ESM)
+LANGUAGE LANG_SPANISH, SUBLANG_SPANISH_MEXICAN
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+DLG_HOME DIALOGEX 0, 0, 453, 370
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "CENTRO DE ADOPCION"
+MENU IDR_MENU1
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "BIENVENIDO",LBL_TITULO,134,18,41,8
+    LTEXT           "Ingresa la siguiente informacion",LBL_INSTRUCCION,7,39,102,8
+    EDITTEXT        TXT_NOMBRE,7,70,249,14,ES_AUTOHSCROLL
+    EDITTEXT        TXT_NOMBREMASCOTA,7,104,249,14,ES_AUTOHSCROLL
+    LTEXT           "Nombre",LBL_NOMBRE,7,56,26,8
+    LTEXT           "Nombre de la mascota",LBL_NOMBREMASCOTA,7,93,72,8
+    LTEXT           "Edad de la mascota",LBL_EDADMASCOTA,7,124,63,8
+    LTEXT           "Fecha",LBL_FECHA,7,164,20,8
+    LTEXT           "Especie",LBL_ESPECIE,7,198,25,8
+    LTEXT           "Genero",LBL_GENERO,7,233,24,8
+    PUSHBUTTON      "ACEPTAR",BTN_ACEPTAR,81,342,50,17
+    PUSHBUTTON      "CANCELAR",BTN_CANCELAR,177,341,50,18
+    LISTBOX         LB_MASCOTASADOPTADAS,292,56,154,252,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Mascotas Adoptadas",LBL_MASCOTASADOPTADAS,290,41,68,8
+    CONTROL         "",SLD_EDAD,"msctls_trackbar32",TBS_AUTOTICKS | TBS_BOTH | TBS_ENABLESELRANGE | TBS_TOOLTIPS | WS_TABSTOP,7,142,249,15
+    CONTROL         "",DTP_FECHA,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,7,179,100,15
+    COMBOBOX        CB_ESPECIE,7,212,147,30,CBS_DROPDOWNLIST | CBS_SORT | CBS_NOINTEGRALHEIGHT | CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    CONTROL         "Macho",RAD_MACHO,"Button",BS_AUTORADIOBUTTON,7,253,37,10
+    CONTROL         "Hembra",RAD_HEMBRA,"Button",BS_AUTORADIOBUTTON,59,253,41,10
+    CONTROL         "Otro",RAD_OTRO,"Button",BS_AUTORADIOBUTTON,123,253,31,10
+    CONTROL         "Aceptar términos y condiciones",CHB_TERMINOS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,319,115,10
+    PUSHBUTTON      "BUSCAR",BTN_FOTO,7,292,50,14
+    LTEXT           "Foto",LBL_FOTO,7,278,16,8
+    EDITTEXT        TXT_RUTAFOTO,67,292,40,14,ES_AUTOHSCROLL
+    CONTROL         "",PC_FOTO,"Static",SS_BITMAP,163,182,15,13
+END
+
+DLG_ALTAPRODUCTO DIALOGEX 0, 0, 309, 176
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Alta Producto"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "REGRESAR A MAIN",BTN_REGRESAR,95,47,121,14
+    PUSHBUTTON      "CERRAR",BTN_CERRAR,129,92,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    DLG_HOME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 446
+        VERTGUIDE, 154
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+        HORZGUIDE, 56
+        HORZGUIDE, 253
+    END
+
+    DLG_ALTAPRODUCTO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 169
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+DLG_HOME AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+DLG_ALTAPRODUCTO AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU
+BEGIN
+    POPUP "Archivo"
+    BEGIN
+        POPUP "Abrir"
+        BEGIN
+            MENUITEM "Abrir 3",                     ID_ABRIR_ABRIR3
+            MENUITEM "Abrir 4",                     ID_ABRIR_ABRIR4
+        END
+        MENUITEM "Guardar",                     ID_ARCHIVO_GUARDAR
+    END
+    POPUP "Salir"
+    BEGIN
+        MENUITEM "Cerrar sesion",               ID_SALIR_CERRARSESION
+    END
+    POPUP "Productos"
+    BEGIN
+        MENUITEM "Alta de producto",            ID_PRODUCTOS_ALTADEPRODUCTO
+        MENUITEM "Editar",                      ID_PRODUCTOS_EDITAR
+        MENUITEM "Ver todos",                   ID_PRODUCTOS_VERTODOS
+    END
+END
+
+#endif    // Español (México) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
