@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\ClaseControlesWinApi\ClaseControlesWinApi\Source.cpp(138,33): warning C4805: '==': combinación no segura del tipo 'BOOL' y el tipo 'bool' en la operación
-C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\ClaseControlesWinApi\ClaseControlesWinApi\Source.cpp(121,11): warning C4101: 'hf': variable local sin referencia
+C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\ClaseControlesWinApi\ClaseControlesWinApi\Source.cpp(158,33): warning C4805: '==': combinación no segura del tipo 'BOOL' y el tipo 'bool' en la operación
+C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\ClaseControlesWinApi\ClaseControlesWinApi\Source.cpp(141,11): warning C4101: 'hf': variable local sin referencia
   ClaseControlesWinApi.vcxproj -> C:\Users\dell\Documents\LMAD - Clases\PA\Proyectos\ClaseControlesWinApi\Debug\ClaseControlesWinApi.exe

@@ -5,6 +5,7 @@
 #define DLG_HOME                        101
 #define IDR_MENU1                       103
 #define DLG_ALTAPRODUCTO                104
+#define IDR_MENU2                       107
 #define LBL_TITULO                      1001
 #define LBL_INSTRUCCION                 1002
 #define TXT_NOMBRE                      1003
@@ -24,7 +25,6 @@
 #define BTN_CANCELAR                    1017
 #define LB_MASCOTASADOPTADAS            1018
 #define SLD_EDAD                        1019
-#define IDC_DATETIMEPICKER1             1020
 #define DTP_FECHA                       1020
 #define CB_ESPECIE                      1021
 #define RAD_MACHO                       1022
@@ -47,13 +47,16 @@
 #define ID_PRODUCTOS_VERTODOS           40008
 #define ID_ABRIR_ABRIR3                 40009
 #define ID_ABRIR_ABRIR4                 40010
+#define ID_OPCION1_OPCION1              40011
+#define ID_OPCION1_OPCION2              40012
+#define ID_OPCION1_OPCION3              40013
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        107
-#define _APS_NEXT_COMMAND_VALUE         40011
+#define _APS_NEXT_RESOURCE_VALUE        108
+#define _APS_NEXT_COMMAND_VALUE         40014
 #define _APS_NEXT_CONTROL_VALUE         1032
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

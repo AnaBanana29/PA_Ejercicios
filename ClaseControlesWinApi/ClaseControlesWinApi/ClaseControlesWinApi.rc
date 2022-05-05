@@ -167,6 +167,19 @@ BEGIN
     END
 END
 
+IDR_MENU2 MENU
+BEGIN
+    POPUP "Opcion 1"
+    BEGIN
+        POPUP "Opcion 1.1"
+        BEGIN
+            MENUITEM "Opcion 1.1.1",                ID_OPCION1_OPCION3
+        END
+        MENUITEM "Opcion 1.2",                  ID_OPCION1_OPCION2
+    END
+    MENUITEM "Opcion 2",                    0
+END
+
 #endif    // Español (México) resources
 /////////////////////////////////////////////////////////////////////////////
 
