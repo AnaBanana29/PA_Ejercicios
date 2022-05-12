@@ -25,17 +25,22 @@ HWND hHome = 0;
 BOOL CALLBACK cHome(HWND, UINT, WPARAM, LPARAM);
 BOOL CALLBACK cAltaProducto(HWND, UINT, WPARAM, LPARAM);
 
-ModeloAdopcion* buscarPorDato(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion busqueda);
-ModeloAdopcion* buscarPorPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion);
-bool validarCampos(ModeloAdopcion elemento);
-void insertarAlFinal(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion elementoCreado);
-void insertarEnPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion, ModeloAdopcion elementoCreado);
-void insertarDespuesDe(ModeloAdopcion* anterior, ModeloAdopcion elementoCreado);
-void eliminarPorPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion);
-void eliminarPorDato(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion eliminarElemento);
-void editarPorPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion, ModeloAdopcion nuevoDato);
-void editarPorDato(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion busqueda, ModeloAdopcion nuevoDato);
-void imprimeModeloAdopcion(ModeloAdopcion* imprimir);
+//ModeloAdopcion* buscarPorDato(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion busqueda);
+//ModeloAdopcion* buscarPorPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion);
+//bool validarCampos(ModeloAdopcion elemento);
+//void insertarAlFinal(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion elementoCreado);
+//void insertarEnPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion, ModeloAdopcion elementoCreado);
+//void insertarDespuesDe(ModeloAdopcion* anterior, ModeloAdopcion elementoCreado);
+//void eliminarPorPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion);
+//void eliminarPorDato(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion eliminarElemento);
+//void editarPorPosicion(ModeloAdopcion** ModeloAdopcion_inicial, int posicion, ModeloAdopcion nuevoDato);
+//void editarPorDato(ModeloAdopcion** ModeloAdopcion_inicial, ModeloAdopcion busqueda, ModeloAdopcion nuevoDato);
+//void imprimeModeloAdopcion(ModeloAdopcion* imprimir);
+
+bool soloLetras(string);
+bool soloNumeros(string);
+string convertirMayusculas(string);
+string convertirMinusculas(string);
 
 bool cMenu(HWND hWnd, long opcion);
 wstring s2ws(const string& s) {
@@ -48,12 +53,13 @@ wstring s2ws(const string& s) {
 	delete[] buf;
 	return r;
 }
+bool fechaMenorAHoy(SYSTEMTIME hoy, SYSTEMTIME fecha);
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, PSTR cmdLine, int showCmd) {
 	hInstanceGlobal = hInstance;
-	
-	hHome = CreateDialog(hInstance, MAKEINTRESOURCE(DLG_HOME), 0, cHome);
 
+	hHome = CreateDialog(hInstance, MAKEINTRESOURCE(DLG_HOME), 0, cHome);
 	MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
 
@@ -79,9 +85,10 @@ BOOL CALLBACK cHome(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	switch (msg)
 	{
 	case WM_INITDIALOG: {
-		SetWindowText(hNombre, (s2ws("HOLA")).c_str());
+		//SetWindowText(hNombre, (s2ws("HOLA")).c_str());
 		SendMessage(hNombreMascota, WM_SETTEXT, 0, (LPARAM)(s2ws("HOLA")).c_str());
-		
+		SendDlgItemMessage(hWnd, TXT_NOMBRE, WM_SETTEXT, 0, (LPARAM)(s2ws("adfasdfsd")).c_str());
+
 		SendDlgItemMessage(hWnd, SLD_EDAD, TBM_SETRANGE, (WPARAM)FALSE, MAKELPARAM(0, 50));
 
 		wstring especies[3] = { s2ws("Perro"), s2ws("Gato"), s2ws("Ave") };
@@ -105,13 +112,28 @@ BOOL CALLBACK cHome(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 				ModeloAdopcion* nuevaMascota = new ModeloAdopcion;
 
 				GetDlgItemText(hWnd, TXT_NOMBRE, nuevaMascota->nombre, 255);
-				
+
+				if (nuevaMascota->nombre == s2ws("").c_str()) {
+					MessageBox(0, L"Nombre vacio!", L"Error", MB_OK);
+				}
+
 				GetWindowText(hNombreMascota, nuevaMascota->nombreMascota, 255);
-				
+
 				int edad = SendMessage(hEdad, TBM_GETPOS, 0, 0);
 
 				SYSTEMTIME fecha;
 				SendDlgItemMessage(hWnd, DTP_FECHA, DTM_GETSYSTEMTIME, 0, (LPARAM)&fecha);
+
+				SYSTEMTIME hoy;
+				GetLocalTime(&hoy);
+
+				if (fechaMenorAHoy(hoy, fecha)) {
+					MessageBox(0, L"Fecha menor a hoy", L"Aviso", MB_OK);
+				}
+				else {
+					MessageBox(0, L"Fecha igual o mayor a hoy", L"Aviso", MB_OK);
+				}
+
 
 				int indiceEspecie = SendDlgItemMessage(hWnd, CB_ESPECIE, CB_GETCURSEL, 0, 0);
 
@@ -122,8 +144,11 @@ BOOL CALLBACK cHome(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 				if (IsDlgButtonChecked(hWnd, RAD_OTRO) == BST_CHECKED)
 					nuevaMascota->genero = 3;
 
+
+
 				SendDlgItemMessage(hWnd, LB_MASCOTASADOPTADAS, LB_ADDSTRING, 0, (LPARAM)nuevaMascota->nombreMascota);
-			}else {
+			}
+			else {
 				MessageBox(NULL, L"Aceptar términos y condiciones", L"Aviso", MB_OK | MB_ICONASTERISK);
 			}
 
@@ -260,6 +285,77 @@ bool cMenu(HWND hWnd, long opcion) {
 
 	return true;
 }
+
+
+bool soloLetras(string str) {
+	int tam = str.length();
+
+	for (int i = 0; i < tam; i++) {
+		if ((str[i] < 'a' || str[i] > 'z') &&
+			(str[i] < 'A' || str[i] > 'Z')) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool soloNumeros(string str) {
+	int tam = str.length();
+
+	for (int i = 0; i < tam; i++) {
+		if (str[i] < '0' || str[i] > '9') {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+string convertirMayusculas(string str) {
+	int tam = str.length();
+	string mayusculas = "";
+
+	for (int i = 0; i < tam; i++) {
+		if (str[i] >= 'a' && str[i] <= 'z') {
+			str[i] -= 32;
+		}
+	}
+
+	mayusculas = str;
+
+	return mayusculas;
+}
+
+string convertirMinusculas(string str) {
+	int tam = str.length();
+	string mayusculas = "";
+
+	for (int i = 0; i < tam; i++) {
+		if (str[i] >= 'A' && str[i] <= 'Z') {
+			str[i] += 32;
+		}
+	}
+
+	mayusculas = str;
+
+	return mayusculas;
+}
+
+bool fechaMenorAHoy(SYSTEMTIME hoy, SYSTEMTIME fecha) {
+	if (fecha.wYear < hoy.wYear) {
+		return true;
+	}
+	else if (fecha.wYear == hoy.wYear && fecha.wMonth < hoy.wMonth) {
+		return true;
+	}
+	else if (fecha.wYear == hoy.wYear && fecha.wMonth == hoy.wMonth && fecha.wDay < hoy.wDay) {
+		return true;
+	}
+
+	return false;
+}
+
 //
 //ModeloAdopcion* buscarPorNombre(ModeloAdopcion** ModeloAdopcion_inicial, string busqueda) {
 //	//Creamos un puntero para usar como índice para recorrer la lista
